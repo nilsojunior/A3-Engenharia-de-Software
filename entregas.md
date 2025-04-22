@@ -9,4 +9,4 @@
   e diagrama uml.
 - Andrey - 100%: Recursos técnicos e ferramentas utilizdas.
 - Thauany - 100%: Protótipo do produto.
-- Henrique - 0%:
+- Henrique - 0%: Planejamento das sprints.
