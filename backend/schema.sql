@@ -1,0 +1,20 @@
+CREATE DATABASE IF NOT EXISTS adot_me;
+USE adot_me;
+
+CREATE TABLE IF NOT EXISTS NGO (
+    id BIGINT PRIMARY KEY AUTO_INCREMENT,
+    org_name VARCHAR(100) NOT NULL,
+    email VARCHAR(100) NOT NULL,
+    phone VARCHAR(20) NOT NULL,
+    address VARCHAR(255) NOT NULL
+);
+
+CREATE TABLE IF NOT EXISTS Pet (
+    id BIGINT PRIMARY KEY AUTO_INCREMENT,
+    owner_id BIGINT NOT NULL,
+    name VARCHAR(50) NOT NULL,
+    species VARCHAR(50) NOT NULL,
+    birth_date DATE,
+    description TEXT,
+    FOREIGN KEY (owner_id) REFERENCES NGO(id)
+);
