@@ -1,0 +1,29 @@
+{
+    "name": "faculdade",
+    "version": "1.0.0",
+    "description": "",
+    "main": "index.js",
+    "scripts": {
+        "dev": "npx nodemon app.js"
+    },
+    "repository": {
+        "type": "git",
+        "url": "git+https://github.com/nilsojunior/faculdade.git"
+    },
+    "keywords": [],
+    "author": "",
+    "license": "ISC",
+    "type": "module",
+    "bugs": {
+        "url": "https://github.com/nilsojunior/faculdade/issues"
+    },
+    "homepage": "https://github.com/nilsojunior/faculdade#readme",
+    "dependencies": {
+        "dotenv": "^16.5.0",
+        "express": "^5.1.0",
+        "mysql2": "^3.14.1"
+    },
+    "devDependencies": {
+        "nodemon": "^3.1.10"
+    }
+}
