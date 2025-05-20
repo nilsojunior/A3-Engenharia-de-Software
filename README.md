@@ -3,7 +3,6 @@
 ## Integrantes
 
 - Andrey Mottola de Lima e Silva
-- Henrique de Freitas Domingos
 - Thauany Cristiny Straes
 - Gabriela Pacheco Vieira
 - Matheus Pereira Silva
