@@ -1,51 +1,52 @@
-const { model } = require('mongoose')
-const mongoose = require('../db/conn')
-const { Schema } = mongoose
+const { model } = require("mongoose");
+const mongoose = require("../db/conn");
+const { Schema } = mongoose;
 
 const Pet = mongoose.model(
-    'Pet',
+    "Pet",
     new Schema(
         {
             name: {
                 type: String,
-                required: true
+                required: true,
             },
             age: {
                 type: Number,
-                required: true
+                required: true,
             },
-            weight:{
+            weight: {
                 type: Number,
-                required: true
+                required: true,
             },
             breed: {
                 type: String,
-                required: true
+                required: true,
             },
             gender: {
                 type: String,
-                required: true
+                required: true,
             },
             size: {
                 type: String,
-                required: true
+                required: true,
             },
             local: {
                 type: String,
-                required: true
+                required: true,
             },
             images: {
                 type: Array,
-                required: true
+                required: true,
             },
             available: {
-                type: Boolean
+                type: Boolean,
             },
             user: Object,
             adopter: Object,
         },
         { timestamps: true },
     ),
-)
+);
 
-module.exports = Pet
+module.exports = Pet;
+
