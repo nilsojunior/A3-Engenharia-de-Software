@@ -3,6 +3,7 @@ const User = require("../models/User");
 const bcrypt = require("bcrypt");
 const jwt = require("jsonwebtoken");
 const getToken = require("../helpers/get-token");
+const getUserByToken = require("../helpers/get-user-by-token");
 
 module.exports = class UserController {
     static async register(req, res) {
@@ -36,6 +37,7 @@ module.exports = class UserController {
             res.status(422).json({
                 message: "A senha e a confirmação de senha precisam ser iguais",
             });
+            return;
         }
 
         //Verifica a existencia do usuario
@@ -66,7 +68,9 @@ module.exports = class UserController {
 
             await createUserToken(newUser, req, res);
         } catch (error) {
-            res.status(500).json({ message: error });
+            res.status(500).json({
+                message: "Erro ao registrar usuário. Tente novamente!",
+            });
         }
     }
 
@@ -120,5 +124,97 @@ module.exports = class UserController {
 
         res.status(200).send(currentUser);
     }
-};
 
+    static async getUserById(req, res) {
+        const id = req.params.id;
+        const user = await User.findById(id).select("-password");
+
+        if (!user) {
+            res.status(422).json({
+                message: "Usuário não encontrado!",
+            });
+            return;
+        }
+
+        res.status(200).json({ user });
+    }
+
+    static async editUser(req, res) {
+        //console.log("req.body recebido:", req.body);
+        //res.send("Verificando req.body...");
+
+        const id = req.params.id;
+
+        const token = getToken(req);
+
+        const user = await getUserByToken(token);
+
+        const name = req.body.name;
+        const email = req.body.email;
+        const phone = req.body.phone;
+        const password = req.body.password;
+        const confirmPassword = req.body.confirmPassword;
+
+        if (req.file) {
+            user.image = req.file.filename;
+        }
+
+        if (!name) {
+            res.status(422).json({ message: "Insira um nome" });
+            return;
+        }
+        user.name = name;
+
+        if (!email) {
+            res.status(422).json({ message: "Insira um email" });
+            return;
+        }
+
+        user.email = email;
+
+        const userExists = await User.findOne({ email: email });
+
+        if (user.email !== email && userExists) {
+            res.status(422).json({
+                message: "Por favor, utilize outro email!",
+            });
+            return;
+        }
+
+        if (!phone) {
+            res.status(422).json({ message: "Insira um número de telefone" });
+            return;
+        }
+
+        user.phone = phone;
+
+        if (password !== confirmPassword) {
+            res.status(422).json({
+                message: "A senha e a confirmação de senha precisam ser iguais",
+            });
+            return;
+        } else if (password === confirmPassword && password != null) {
+            const salt = await bcrypt.genSalt(12);
+            const passwordHash = await bcrypt.hash(password, salt);
+
+            user.password = passwordHash;
+        }
+
+        try {
+            const updatedUser = await User.findOneAndUpdate(
+                { _id: user._id },
+                { $set: user },
+                { new: true },
+            );
+
+            res.status(200).json({
+                message: "Usuário atualizado!",
+                data: updatedUser,
+            });
+        } catch (error) {
+            res.status(500).json({ message: error });
+            //console.log(error)
+            return;
+        }
+    }
+};
