@@ -21,4 +21,3 @@ const createUserToken = async (user, req, res) => {
 };
 
 module.exports = createUserToken;
-
