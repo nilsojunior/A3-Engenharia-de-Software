@@ -49,4 +49,3 @@ const Pet = mongoose.model(
 );
 
 module.exports = Pet;
-
