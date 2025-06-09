@@ -1,17 +1,29 @@
+// Arquivo principal
+
+// Requisição Express e Cors
 const express = require("express");
 const cors = require("cors");
 
+//Inicialização Express
 const app = express();
 app.use(express.json());
-app.use(express.urlencoded({ extended: true }));
+app.use(
+    express.urlencoded({
+        extended: true,
+    }),
+);
 
+// Contantes para Rotas de Pets e Users
 const UserRoutes = require("./routes/UserRoutes");
 const PetRoutes = require("./routes/PetRoutes");
 
-//JSON config
-
-//CORS Solucao
-app.use(cors({ credentials: true, origin: "http://localhost:3000" }));
+//CORS Solução
+app.use(
+    cors({
+        credentials: true,
+        origin: "http://localhost:3000",
+    }),
+);
 
 // Pasta Publica de imagens
 app.use(express.static("public"));

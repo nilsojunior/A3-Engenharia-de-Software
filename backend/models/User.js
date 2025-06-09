@@ -2,6 +2,7 @@ const { model } = require("mongoose");
 const mongoose = require("../db/conn");
 const { Schema } = mongoose;
 
+// Schema para Users no DB
 const User = mongoose.model(
     "User",
     new Schema(

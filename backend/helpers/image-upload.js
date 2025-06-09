@@ -1,3 +1,5 @@
+// Arquivo para possibilitar o Upload de imagens
+
 const multer = require("multer");
 const path = require("path");
 
@@ -29,7 +31,9 @@ const imageUpload = multer({
     storage: imageStore,
     fileFilter(req, file, cb) {
         if (!file.originalname.match(/\.(png|jpg)$/)) {
-            return cb(new Error("Erro! Formatos aceitos: PNG ou JPG!"));
+            return cb(
+                new Error("Erro! Formatos de arquivos aceitos: PNG ou JPG!"),
+            );
         }
         cb(undefined, true);
     },

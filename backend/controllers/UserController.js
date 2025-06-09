@@ -10,7 +10,6 @@ module.exports = class UserController {
         const { name, email, phone, password, confirmPassword } = req.body;
 
         // Validacoes
-
         if (!name) {
             res.status(422).json({ message: "Insira um nome" });
             return;
@@ -41,7 +40,6 @@ module.exports = class UserController {
         }
 
         //Verifica a existencia do usuario
-
         const userCheck = await User.findOne({ email: email });
 
         if (userCheck) {
@@ -50,12 +48,10 @@ module.exports = class UserController {
         }
 
         // Criar senha
-
         const salt = await bcrypt.genSalt(12);
         const passwordHash = await bcrypt.hash(password, salt);
 
         // Criar user
-
         const user = new User({
             name,
             email,
@@ -65,7 +61,6 @@ module.exports = class UserController {
 
         try {
             const newUser = await user.save();
-
             await createUserToken(newUser, req, res);
         } catch (error) {
             res.status(500).json({
@@ -95,7 +90,6 @@ module.exports = class UserController {
         }
 
         // Verifica a senha no DB
-
         const checkPassword = await bcrypt.compare(password, user.password);
 
         if (!checkPassword) {
@@ -114,9 +108,7 @@ module.exports = class UserController {
         if (req.headers.authorization) {
             const token = getToken(req);
             const decoded = jwt.verify(token, "secret");
-
             currentUser = await User.findById(decoded.id);
-
             currentUser.password = undefined;
         } else {
             currentUser = null;
@@ -144,11 +136,8 @@ module.exports = class UserController {
         //res.send("Verificando req.body...");
 
         const id = req.params.id;
-
         const token = getToken(req);
-
         const user = await getUserByToken(token);
-
         const name = req.body.name;
         const email = req.body.email;
         const phone = req.body.phone;

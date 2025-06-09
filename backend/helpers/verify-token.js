@@ -1,10 +1,12 @@
+// Aquivo de verificação de Token
+
 const jwt = require("jsonwebtoken");
 const getToken = require("./get-token");
 
 const checkToken = (req, res, next) => {
     if (!req.headers.authorization) {
         return res.status(401).json({
-            message: "Acesso negado!",
+            message: "Erro! Acesso negado!",
         });
     }
 
@@ -12,7 +14,7 @@ const checkToken = (req, res, next) => {
 
     if (!token) {
         return res.status(401).json({
-            message: "Acesso negado!",
+            message: "Erro! Acesso negado!",
         });
     }
 
@@ -22,7 +24,7 @@ const checkToken = (req, res, next) => {
         next();
     } catch (err) {
         return res.status(400).json({
-            message: "Token Inválido!",
+            message: "Erro! Token Inválido!",
         });
     }
 };

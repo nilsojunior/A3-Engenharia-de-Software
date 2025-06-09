@@ -1,7 +1,9 @@
+// Arquivo de Rotas para Users
+
 const router = require("express").Router();
 const UserController = require("../controllers/UserController");
 
-// Middleware
+// Middlewares
 const verifyToken = require("../helpers/verify-token");
 const { imageUpload } = require("../helpers/image-upload");
 
