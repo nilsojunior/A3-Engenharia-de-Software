@@ -20,7 +20,7 @@ router.get("/myadoptions", verifyToken, PetController.getAllUserAdoptions);
 router.get("/:id", PetController.getPetById);
 
 // Rota para Delete
-router.delete("/:id", verifyToken, PetController.removePetById);
+router.delete("/:id", verifyToken, PetController.deletePetById);
 
 // Rotas para Patch
 router.patch(

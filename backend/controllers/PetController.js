@@ -137,7 +137,7 @@ module.exports = class PetController {
         });
     }
 
-    static async removePetById(req, res) {
+    static async deletePetById(req, res) {
         const id = req.params.id;
 
         if (!ObjectId.isValid(id)) {
@@ -170,7 +170,7 @@ module.exports = class PetController {
         await Pet.findByIdAndDelete(id);
 
         res.status(200).json({
-            message: "Pet removido!",
+            message: "Pet Deletado!",
         });
     }
 
@@ -250,10 +250,7 @@ module.exports = class PetController {
             updatedData.local = local;
         }
 
-        if (images.length === 0) {
-            res.status(422).json({ message: "As imagens são obrigatórias!" });
-            return;
-        } else {
+        if (images.length > 0) {
             updatedData.images = [];
             images.map((image) => {
                 updatedData.images.push(image.filename);
