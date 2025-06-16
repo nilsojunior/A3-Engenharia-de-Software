@@ -1,14 +1,27 @@
+import { useContext, useState } from "react";
+
 import Input from "../../form/Input";
 import styles from "../../form/Form.module.css";
 import { Link } from "react-router-dom";
+import { Context } from "../../../context/UserContext";
 
 function Register() {
-    function handleChange(e) {}
+    const [user, setUser] = useState({});
+    const { register } = useContext(Context);
+
+    function handleChange(e) {
+        setUser({ ...user, [e.target.name]: e.target.value });
+    }
+
+    function handleSubmit(e) {
+        e.preventDefault();
+        register(user);
+    }
 
     return (
         <section className={styles.form_container}>
             <h1>Cadastro</h1>
-            <form>
+            <form onSubmit={handleSubmit}>
                 <Input
                     text="Nome"
                     type="text"
@@ -17,17 +30,17 @@ function Register() {
                     handleOnChange={handleChange}
                 />
                 <Input
-                    text="Telefone"
-                    type="text"
-                    name="phone"
-                    placeholder="Digite seu telefone"
-                    handleOnChange={handleChange}
-                />
-                <Input
                     text="E-mail"
                     type="email"
                     name="email"
                     placeholder="Digite seu E-mail"
+                    handleOnChange={handleChange}
+                />
+                <Input
+                    text="Telefone"
+                    type="text"
+                    name="phone"
+                    placeholder="Digite seu telefone"
                     handleOnChange={handleChange}
                 />
                 <Input

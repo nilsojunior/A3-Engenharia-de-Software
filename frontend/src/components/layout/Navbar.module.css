@@ -26,13 +26,17 @@
 .navbar a {
     text-decoration: none;
     color: #01c1d8;
+    font-weight: bold;
     cursor: pointer;
-    transition: 0.5s;
+    transition: 0.3s;
     padding: 0.5em 0.8em;
     border-radius: 5px;
 }
+.navbar li:hover {
+    background-color: #01c1d8;
+    color: #ffffff;
+}
 
 .navbar li:hover > a {
-    background-color: #01c1d8;
     color: #ffffff;
 }
