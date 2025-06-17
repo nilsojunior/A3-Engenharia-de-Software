@@ -1,9 +1,32 @@
-# A3 Engenharia de Software
+<div align="center">
 
-## Integrantes
+# adote.me
 
-- Andrey Mottola de Lima e Silva
-- Thauany Cristiny Straes
-- Gabriela Pacheco Vieira
-- Matheus Pereira Silva
-- Nilso José Miguel da Silva Júnior
+##### Site para adoção de pets.
+
+<img alt="cadastro" src="assets/preview.png"/>
+</div>
+
+## Instalação
+
+- É necessário estar com o MongoDB rodando.
+- A variável de ambiente `REACT_APP_API` deve conter o URL do servidor local.
+- Exemplo: `REACT_APP_API='http://localhost:5000/'`.
+- Instale as dependências.
+
+```console
+cd backend && npm install
+cd frontend && npm install
+```
+
+Rode o back-end.
+
+```consoleassets/cadastro.pngassets/cadastro.png
+cd backend && npm start
+```
+
+Rode o front-end.
+
+```console
+cd frontend && npm start
+```
