@@ -16,6 +16,7 @@ app.use(
 // Contantes para Rotas de Pets e Users
 const UserRoutes = require("./routes/UserRoutes");
 const PetRoutes = require("./routes/PetRoutes");
+const errorHandler = require('./helpers/error-handler');
 
 //CORS Solução
 app.use(
@@ -31,5 +32,6 @@ app.use(express.static("public"));
 // Rotas
 app.use("/users", UserRoutes);
 app.use("/pets", PetRoutes);
+app.use(errorHandler);
 
 app.listen(5000);
