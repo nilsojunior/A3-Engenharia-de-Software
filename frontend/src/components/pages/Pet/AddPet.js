@@ -36,7 +36,7 @@ function AddPet() {
             })
             .catch((err) => {
                 msgType = "error";
-                return err.response.data;
+                return err.response?.data || {message: err.message};
             });
 
         setFlashMessage(data.message, msgType);
